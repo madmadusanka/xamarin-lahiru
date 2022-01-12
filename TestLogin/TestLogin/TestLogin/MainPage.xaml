@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestLogin.MainPage">
+
+    <StackLayout BackgroundColor="White">
+        <Grid>
+            <Grid.Background>
+                <LinearGradientBrush >
+                    <GradientStop Color="#159957"
+                                  Offset="0.1">
+                    </GradientStop>
+                    <GradientStop Color="#155799"
+                                  Offset="0.1">
+                    </GradientStop>
+                </LinearGradientBrush>
+            </Grid.Background>
+        </Grid>
+        <Frame WidthRequest="100" HeightRequest="35" BackgroundColor="White" VerticalOptions="Center">
+            <Label Text="Login" TextColor="LimeGreen" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large" FontAttributes="Bold">
+            </Label>
+        </Frame>
+        
+             <Label Text="Username" TextColor="Black" FontSize="Small" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"
+                    Margin="23,10,0,0">
+             </Label>
+      
+        <Frame WidthRequest="100" HeightRequest="35" BackgroundColor="White" VerticalOptions="Center">
+            <Grid>
+                <Image Source="username.jpg" Margin="295,0,0,20" WidthRequest="10" HeightRequest="10" Opacity="50"></Image>
+                <Entry Placeholder="Type your Username" PlaceholderColor="Gray" HorizontalTextAlignment="Start" 
+                      TextColor="LimeGreen" FontSize="Small" WidthRequest="80" >
+                </Entry>
+        </Grid>
+        </Frame>
+
+        <Label Text="Password" TextColor="Black" FontSize="Small" VerticalTextAlignment="Start" HorizontalTextAlignment="Start" Margin="23,10,0,0">
+        </Label>
+        <Frame WidthRequest="100" HeightRequest="35" BackgroundColor="White" VerticalOptions="Center">
+            <Grid>
+                <Image Source="password.png" Margin="295,0,0,20" WidthRequest="10" HeightRequest="10" Opacity="50"></Image>
+                <Entry Placeholder="Type your Password" PlaceholderColor="Gray" IsPassword="True" HorizontalTextAlignment="Start" FontSize="Small"
+                       WidthRequest="80" TextColor="LimeGreen">
+                </Entry>
+            </Grid>
+        </Frame>
+
+        <Label Text="Forgot Password?          " TextColor="Black" FontSize="Micro" HorizontalTextAlignment="End" 
+               VerticalTextAlignment="End" Margin="0,30,0,30">
+        </Label>
+
+        <Button Text="Login" TextColor="Black" CornerRadius="65" BorderWidth="2" BorderColor="LimeGreen" BackgroundColor="White"
+                         WidthRequest="80" Margin="20,0,20,0">
+        </Button>
+
+        <Frame HeightRequest="20">
+            <Label Text="Or Sign Up Using" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" >
+               </Label>
+        </Frame>
+        <Frame BorderColor="White"  >
+            <Grid>
+               
+                <Image Source="facebook.png" WidthRequest="40" HeightRequest="40" Margin="-120,0,0,0"></Image>
+                <Image Source="twitter.png" WidthRequest="50" HeightRequest="50" Margin="28,0,0,0" ></Image>
+                <Image Source="google.png" WidthRequest="40" HeightRequest="40"  Margin="170,0,0,0"></Image>
+            </Grid>
+        </Frame>
+
+
+        <Label Text="Or Sign Up Using" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,50,0,0" >
+         </Label>
+
+
+        <Label Text="SIGN UP" VerticalOptions="Center" HorizontalOptions="Center">
+        </Label>
+    </StackLayout>
+
+</ContentPage>
