@@ -9,7 +9,6 @@ namespace TestLogin
         public App()
         {
             InitializeComponent();
-            
             MainPage = new MainPage();
         }
 

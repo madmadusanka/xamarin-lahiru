@@ -10,14 +10,16 @@ namespace TestLogin
 {
     internal class MainViewModel : INotifyPropertyChanged
     {
-       
-        #region
+        
+        
+
+        #region Variables
         public string _username;
         public string _password;
         #endregion
 
 
-        #region
+        #region Getters&Setters
         public string Username
         {
             get
@@ -49,41 +51,39 @@ namespace TestLogin
             }
 
         }
-        public Command Login 
+        public Command LoginCommand
         {
             get; }
-        #endregion
-
-
-        #region
-        public MainViewModel()
-        {
-            Login = new Command(async() => await Validate());
-            
-        }
-       
-
         public string DisplayName => $"Username Entered : {Username} ";
         public string Status => $"{Username} Authenticated";
-        
-       
         #endregion
+
+
+        #region Command_Object
+        public MainViewModel()
+        {
+            LoginCommand = new Command(async () => await Validate());
+
+        }
+        #endregion
+
+        #region Validation
         public async Task Validate()
         {
             try
             {
                 if (_username == null || _password == null)
                 {
-                    await Application.Current.MainPage.DisplayAlert("Warning", "Please Double Check the Credentials", "Ok");
+                    await new Alerts().WarningAlertAsync();
                 }
                 else if (_username == "lahiru" && _password == "lahiru")
                 {
-                    await Application.Current.MainPage.DisplayAlert("Successfull", "Welcome ", "Ok");
+                    await new Alerts().SuccesAlerts();
                     App.Current.MainPage = new MainMenu();
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Access Denied", "Please Check your Connection ", "Ok");
+                     new Alerts().ErrorAlertAsync();
                 }
             }
             catch (Exception ex)
@@ -92,9 +92,10 @@ namespace TestLogin
             }
 
         }
+        #endregion
 
 
-        
+        #region Property_Change_Handler
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected  void OnPropertyChanged(string propertyName)
@@ -104,7 +105,15 @@ namespace TestLogin
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-        
+
+        internal class Services
+        {
+            internal interface IMessageService
+            {
+                void ShowAsync(string v);
+            }
+        }
+        #endregion
 
     }
 }
