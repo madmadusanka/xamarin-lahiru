@@ -13,6 +13,22 @@ namespace TestLogin
         public MainPage()
         {
             InitializeComponent();
+            loginButton.Clicked += LoginButton_Clicked;
+            var username = new Entry {Text = "lahiru"};
+            var password = new Entry { Text = "lahiru"};
+        }
+        void LoginButton_Clicked(object sender, EventArgs e)
+        {
+            if (username.Text == "lahiru" && password.Text == "lahiru")
+            {
+                App.Current.MainPage = new Page1();
+                DisplayAlert("Successfull", "Welcome mr lahiru", "Great");
+            }
+            else
+            {
+                DisplayAlert("Warning", "Enter Credentials to Login", "OK");
+            }
+            
         }
     }
 }
