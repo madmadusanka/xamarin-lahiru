@@ -1,7 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:TestLogin"
              x:Class="TestLogin.MainPage">
+    <ContentPage.BindingContext>
+        <local:MainViewModel>
+            
+        </local:MainViewModel>
+    </ContentPage.BindingContext>
 
     <StackLayout >
         <Grid>
@@ -24,33 +29,40 @@
              <Label Text="Username" TextColor="Black" FontSize="12" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"
                     Margin="23,25,20,-8">
              </Label>
+              
       
-        <Frame WidthRequest="100" HeightRequest="35" BackgroundColor="White" VerticalOptions="Center">
+        <Frame WidthRequest="100" HeightRequest="45" BackgroundColor="White" VerticalOptions="Center">
             <Grid>
                 <Image Source="username.jpg" Margin="295,0,0,20" WidthRequest="10" HeightRequest="10" Opacity="50"></Image>
-                <Entry x:Name="username"  Placeholder="Type your Username" PlaceholderColor="Gray" HorizontalTextAlignment="Start" 
+                <Entry x:Name="username" Text="{Binding Username}"  Placeholder="Type your Username" PlaceholderColor="Gray" HorizontalTextAlignment="Start" 
                       TextColor="LimeGreen" FontSize="Small" WidthRequest="80" >
                 </Entry>
-        </Grid>
+            </Grid>
         </Frame>
+        <Label Text="{Binding DisplayName}" FontSize="12" TextColor="Black" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"
+                     Margin="25,-25,0,25">
+        </Label>
 
         <Label Text="Password" TextColor="Black" FontSize="12" VerticalTextAlignment="Start" HorizontalTextAlignment="Start" Margin="23,10,0,-8">
         </Label>
-        <Frame WidthRequest="100" HeightRequest="35" BackgroundColor="White" VerticalOptions="Center">
+        <Frame WidthRequest="100" HeightRequest="40" BackgroundColor="White" VerticalOptions="Center">
             <Grid>
                 <Image Source="password.png" Margin="295,0,0,20" WidthRequest="10" HeightRequest="10" Opacity="50"></Image>
-                <Entry x:Name="password" Placeholder="Type your Password" PlaceholderColor="Gray" IsPassword="True" HorizontalTextAlignment="Start" FontSize="Small"
+                <Entry x:Name="password" Text="{Binding Password}" Placeholder="Type your Password" PlaceholderColor="Gray" IsPassword="True" HorizontalTextAlignment="Start" FontSize="Small"
                        WidthRequest="80" TextColor="LimeGreen">
                 </Entry>
             </Grid>
         </Frame>
+        <Label Text="{Binding Status}" FontSize="12" TextColor="Black" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"
+                     Margin="25,-25,0,25">
+        </Label>
 
         <Label Text="Forgot Password?          " TextColor="Black" FontSize="11" HorizontalTextAlignment="End" 
                VerticalTextAlignment="End" Margin="0,-25,0,25">
         </Label>
 
-        <Button x:Name="loginButton" Text="Login" TextColor="Black" CornerRadius="65" BorderWidth="2" BorderColor="LimeGreen" BackgroundColor="White"
-                         WidthRequest="80" Margin="20,-10,20,0" Clicked="LoginButton_Clicked">
+        <Button x:Name="loginButton" Command="{Binding Login}" Text="Login" TextColor="Black" CornerRadius="65" BorderWidth="2" BorderColor="LimeGreen" BackgroundColor="White"
+                         WidthRequest="80" Margin="20,-10,20,0" >
            
         </Button>
 
