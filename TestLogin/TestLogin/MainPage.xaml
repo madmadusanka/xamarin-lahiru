@@ -61,7 +61,7 @@
                VerticalTextAlignment="End" Margin="0,-25,0,25">
         </Label>
 
-        <Button x:Name="loginButton" Command="{Binding LoginCommand}" Text="Login" TextColor="Black" CornerRadius="65" BorderWidth="2" BorderColor="LimeGreen" BackgroundColor="White"
+        <Button  Command="{Binding LoginCommand}" Text="Login" TextColor="Black" CornerRadius="65" BorderWidth="2" BorderColor="LimeGreen" BackgroundColor="White"
                          WidthRequest="80" Margin="20,-10,20,0"  >
            
         </Button>

@@ -103,7 +103,7 @@ namespace TestLogin
 
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //throw new Exception("Error", ex);
             }
