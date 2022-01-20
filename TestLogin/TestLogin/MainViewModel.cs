@@ -1,17 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using Xamarin.Forms;
-using System.Linq;
 using System.Threading.Tasks;
+using System.Net.Http;
+using Newtonsoft.Json;
+using TestLogin.Models;
+using System.Windows.Input;
 
 namespace TestLogin
 {
-    internal class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : INotifyPropertyChanged
     {
-        
-        
+
+       
 
         #region Variables
         public string _username;
@@ -51,9 +53,10 @@ namespace TestLogin
             }
 
         }
-        public Command LoginCommand
+        public ICommand LoginCommand
         {
-            get; }
+            get;
+        }
         public string DisplayName => $"Username Entered : {Username} ";
         public string Status => $"{Username} Authenticated";
         #endregion
@@ -72,23 +75,37 @@ namespace TestLogin
         {
             try
             {
-                if (_username == null || _password == null)
+                PostContent Registration = new PostContent
                 {
-                    await new Alerts().WarningAlertAsync();
-                }
-                else if (_username == "lahiru" && _password == "lahiru")
+
+                    email = _username,
+                    password = _password
+
+                };
+                var client = new HttpClient();
+                client.BaseAddress = new Uri("https://reqres.in/api/");
+                var Json = JsonConvert.SerializeObject(Registration);
+                var content = new StringContent(Json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync("https://reqres.in/api/login", content);
+
+                var result = response.Content.ReadAsStringAsync();
+                var data = JsonConvert.DeserializeObject<TokenModel>(await result);
+                if (data.Token == null )
                 {
-                    await new Alerts().SuccesAlerts();
+                    await Application.Current.MainPage.DisplayAlert("Success","Welcome", "Ok");
                     App.Current.MainPage = new MainMenu();
+                    await new Alerts().SuccesAlerts();
                 }
                 else
                 {
-                     new Alerts().ErrorAlertAsync();
+                    await new Alerts().WarningAlertAsync();
                 }
+
+
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception("Error", ex);
+                //throw new Exception("Error", ex);
             }
 
         }
@@ -98,7 +115,7 @@ namespace TestLogin
         #region Property_Change_Handler
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected  void OnPropertyChanged(string propertyName)
+        protected void OnPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
             {
@@ -113,7 +130,9 @@ namespace TestLogin
                 void ShowAsync(string v);
             }
         }
+       
+    }
         #endregion
 
-    }
+    
 }
